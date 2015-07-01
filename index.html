@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+	<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+	<link rel="import" href="bower_components/core-item/core-item.html">
+	<link rel="import" href="bower_components/paper-input/paper-input.html">
+	<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+	
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<body fullbleed unresolved>
+	<template is="auto-binding">
+		<core-scaffold>
+
+			<!-- Drawer panel -->
+			<core-header-panel navigation flex>
+				<core-toolbar id="navheader" class="tall">
+				</core-toolbar>
+				
+				<section layout vertical center id="infoList" style="margin:20px;">
+					<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
+					<div class="bottom uuid">{{uuid}}</div>	
+				</section>
+				<section layout vertical id="toolsList">
+					<core-item label="Produit avec :"></core-item>
+					<template repeat="{{item in items}}">
+						<core-item icon="{{item.icon}}" label="{{item.title}}"></core-item>
+					</template>
+				</section>
+				
+				
+			</core-header-panel>
+
+			<!-- App Title -->
+			<div tool layout horizontal flex>
+				<span flex>Brain Mapr</span>
+				<!--<core-icon icon="account-circle"></core-icon>-->
+				<span><!-- number of people online --></span> 
+			</div>
+
+			<!-- Main content -->
+			<div flex></div>
+
+		</core-scaffold>
+	</template>
+	
+	<script>
+	(function() {
+		'use strict';
+		var uuid, avatar, color, cat;
+		// Assign a uuid made of a random cat and a random color
+		var randomColor = function() {
+			var colors = ['navy', 'slate', 'olive', 'moss', 'chocolate', 'buttercup', 'maroon', 'cerise', 'plum', 'orchid'];
+			return colors[(Math.random() * colors.length) >>> 0];
+		};
+		var randomCat = function() {
+			var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
+			return cats[(Math.random() * cats.length) >>> 0];
+		};
+		color = randomColor();
+		cat = randomCat();
+		uuid = cat;
+		avatar = 'images/' + cat + '.jpg';
+	
+		/* Polymer UI and UX */
+		var template = document.querySelector('template[is=auto-binding]');
+		template.channel = 'polymer-chat';
+		template.uuid = uuid;
+		template.avatar = avatar;
+		template.color = color;
+		template.items = [
+			{title: 'PubNub', icon: 'cloud'},
+			{title: 'Polymer', icon: 'polymer'},
+			{title: 'Amour', icon: 'favorite'}
+		];
+		template.checkKey = function(e) {
+			if(e.keyCode === 13 || e.charCode === 13) {
+				template.publish();
+			}
+		};
+		template.sendMyMessage = function(e) {
+			template.publish();
+		};
+	})();
+	</script>
+</body>
+</html>
