@@ -88,15 +88,6 @@
 
 
 	/* Animated */
-    template.transitionend = function() {
-        if (this.lastSelected) {
-          this.lastSelected = null;
-        }
-  	}
 
-	template.back = function() {
-		this.lastSelected = this.$.pages.selected;
-		console.log(this.lastSelected);
-		this.$.pages.selected = 0;
-	}
+
 })();
