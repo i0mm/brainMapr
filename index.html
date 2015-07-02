@@ -66,18 +66,16 @@
 
 					<div wrap class="idea-grid" layout horizontal>
 						<template repeat="{{idea in ideaList}}">
-							<idea-mini layout vertical sujet="{{idea.title}}" avatar="{{idea.avatar}}" color="{{idea.color}}"></idea-mini>
+							<idea-mini layout vertical sujet="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}"></idea-mini>
 						</template>
 	 				</div>
 
 	 				<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab>
-	 				
+
 	 			</section>
 			
 			</div>
 			
-				
-
 		</core-scaffold>
 	</template>
 	
