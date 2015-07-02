@@ -1,5 +1,5 @@
 
-<polymer-element name="idea-mini" attributes="uid iid sujet date score">
+<polymer-element name="idea-mini" attributes="uid iid sujet date score avatar color">
   <template>
   	<style>
   		:host {
@@ -10,13 +10,13 @@
 			margin:2%;
 		}
 		.card {
-			/*padding-top:25px;*/
 			width:100%;
+			padding-top:25px;
+			width:300px;
 		}
 		.idea-subject {
 			color:white;
 			font-size:20px;
-			background-color:#db4437;
 			padding:10px;
 			padding-top:40px;
 		}
@@ -31,38 +31,30 @@
 			width:80px;
 			height:80px;
 		    background-size: contain;
+
+		    border-style: solid;
+    		border-width: 3px;
 		}
 	</style>
 	
 	<section class="section-card" layout vertical>
 		<div class="card">
 			<div class="idea-image" style="background-image: url('images/idea.jpg')">
-				<div class="idea-avatar" style="background-image: url('images/sphynx.jpg')"></div>
+				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
 			<div class="idea-info">{{date}}</div>
-			<div class="idea-subject">{{sujet}}</div>
+			<div class="idea-subject" style="background-color: {{color}}">{{sujet}}</div>
 		</div>
 	</section>
   </template>
   <script>
   	(function() {
 		'use strict';
-		var uuid, avatar, cat, color;
-
-		var randomColor = function() {
-		var colors = ['navy', 'slate', 'olive', 'moss', 'chocolate', 'buttercup', 'maroon', 'cerise', 'plum', 'orchid'];
-			return colors[(Math.random() * colors.length) >>> 0];
-		};
-		var randomCat = function() {
-			var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
-			return cats[(Math.random() * cats.length) >>> 0];
-		};
-		color = randomColor();
-		cat = randomCat();
-		avatar = 'images/' + cat + '.jpg';
+		var uuid, idea_image;
+		idea_image = images/tabby.jpg;
 
 		var template = document.querySelector('template');
-		template.avatar = avatar;
+		template.idea_image = idea_image;
 	});
 	
 	Polymer('idea-mini', {

@@ -115,6 +115,15 @@ paper-fab[icon=send] {
     border-color: #ce6dbd;
 }
 
+
 .idea-grid {
     width:100%;
 }
+
+#addIdeaFab {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+	
+

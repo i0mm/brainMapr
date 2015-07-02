@@ -65,7 +65,7 @@
 		</div>
 
 		<!-- Main content -->
-		<div inline-flex>
+		<div flex>
 			<h3>testChannel Messages</h3>
 			<template repeat="{{idea in ideaList}}">
   				<p>idea : {{idea}}</p>
@@ -73,8 +73,12 @@
 		</div>
 
 		<div class="send-message" layout horizontal>
+	    	<paper-input flex id="titleInput" label="Title" value="{{title}}"></paper-input>
+	    	<paper-input flex id="descInput" label="Description" value="{{desc}}"></paper-input>
+	    	<!--
 	    	<paper-input flex id="titleInput" label="Title" value="{{title}}" on-keyup="{{checkKey}}"></paper-input>
 	    	<paper-input flex id="descInput" label="Description" value="{{desc}}" on-keyup="{{checkKey}}"></paper-input>
+	    	-->
 	    	<paper-fab icon="send" id="sendButton" on-tap="{{publishMyIdea}}"></paper-fab>
 	    </div>
 
