@@ -104,7 +104,7 @@
 		document.getElementById('newIdea').toggle();
 	};
 	
-	template.submitNewIdea = function(title, description) {
+	template.publishMyIdea = function(title, description) {
 		alert(title);
 		return true;
 	};
