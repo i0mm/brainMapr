@@ -114,3 +114,7 @@ paper-fab[icon=send] {
 .avatar.orchid {
     border-color: #ce6dbd;
 }
+
+.idea-grid {
+    width:100%;
+}

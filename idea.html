@@ -2,10 +2,16 @@
 <polymer-element name="idea-mini" attributes="uid iid sujet date score">
   <template>
   	<style>
+  		:host {
+  			width:100%;
+  		}
+		.section-card {
+			width:29%;
+			margin:2%;
+		}
 		.card {
-			padding-top:25px;
-
-			width:300px;
+			/*padding-top:25px;*/
+			width:100%;
 		}
 		.idea-subject {
 			color:white;
@@ -21,7 +27,6 @@
 			position:relative;
    	        left: 35%;
 			top:125px;
-
 			border-radius: 50%;
 			width:80px;
 			height:80px;
@@ -29,7 +34,7 @@
 		}
 	</style>
 	
-	<section layout vertical>
+	<section class="section-card" layout vertical>
 		<div class="card">
 			<div class="idea-image" style="background-image: url('images/idea.jpg')">
 				<div class="idea-avatar" style="background-image: url('images/sphynx.jpg')"></div>
