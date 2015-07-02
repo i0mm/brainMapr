@@ -8,6 +8,7 @@
 	<link rel="import" href="bower_components/paper-button/paper-button.html">
 	<link rel="import" href="bower_components/paper-fab/paper-fab.html">
 	<link rel="import" href="bower_components/paper-dialog/paper-action-dialog.html">
+	<link rel="import" href="bower_components/pubnub-element/pubnub-element.html">
 	<link rel="import" href="new-idea.html">
 	
 	<link rel="import" href="idea.html">
@@ -19,11 +20,14 @@
 
 
 	<template is="auto-binding">
-		<!-- Use your own publish_key and subscribe_key please -->
-		<core-pubnub publish_key="pub-c-fccdc23d-8e64-4031-9f9e-64c275dc4b4b" subscribe_key="sub-c-67616358-2006-11e5-947a-02ee2ddab7fe" uuid="{{uuid}}">
-			<core-pubnub-subscribe channel="polymer-idea" id="sub" on-callback="{{subscribeCallback}}" on-presence="{{presenceChanged}}" on-error="{{error}}">
-			    <core-pubnub-publish channel="polymer-idea" message="" id="pub" on-error="{{error}}"></core-pubnub-publish>
-				<core-pubnub-history channel="polymer-idea" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
+		<!-- For Pubnub Backend -->
+		<core-pubnub
+			publish_key="pub-c-fccdc23d-8e64-4031-9f9e-64c275dc4b4b"
+			subscribe_key="sub-c-67616358-2006-11e5-947a-02ee2ddab7fe"
+			uuid="{{pubnubId}}">
+			<core-pubnub-subscribe id="sub" channel="idea-channel-one" on-callback="{{subscribeCallback}}" on-error="{{error}}">
+			    <core-pubnub-publish id="pub" channel="idea-channel-one" message="" on-error="{{error}}"></core-pubnub-publish>
+				<core-pubnub-history id="history" channel="idea-channel-one" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
 		    </core-pubnub-subscribe>
 		</core-pubnub>
 
@@ -39,8 +43,8 @@
 				</section>
 				<section layout vertical id="toolsList">
 					<core-item label="Produit avec :"></core-item>
-					<template repeat="{{item in items}}">
-						<core-item icon="{{item.icon}}" label="{{item.title}}"></core-item>
+					<template repeat="{{tool in tools}}">
+						<core-item icon="{{tool.icon}}" label="{{tool.title}}"></core-item>
 					</template>
 				</section>
 				
@@ -56,18 +60,19 @@
 
 			<!-- Main content -->
 			<div flex>
-				
-
 
 			<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
 
-
-
 			<section layout horizontal fit id="ideas">
 				<div wrap class="idea-grid">
+					<template repeat="{{idea in ideaList}}">
+						<idea-mini sujet="{{idea.title}}" avatar="{{idea.avatar}}" color="{{idea.color}}"></idea-mini>
+					</template>
+					<!--
 					<idea-mini sujet="Mon idée est toujours superb!" avatar="{{authors[0]}}" color="{{colors[0]}}"></idea-mini>
 					<idea-mini sujet="Greek Greek Greek is Greek" avatar="{{authors[1]}}" color="{{colors[1]}}"></idea-mini>
 					<idea-mini sujet="Il faut acheter de la bière" avatar="{{authors[2]}}" color="{{colors[2]}}"></idea-mini>
+					-->
 				</div>
 				
 				<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab> 

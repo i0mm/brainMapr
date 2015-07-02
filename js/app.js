@@ -3,6 +3,8 @@
 	var uuid, pubnubId, avatar, color, cat;
 	var authors, colors;
 
+	var colorMap = { 'navy' : '#393b79', 'slate' : '#6b6ecf', 'olive': '#637939' , 'moss': '#b5cf6b', 'chocolate': '#8c6d31', 'buttercup': '#e7ba52','maroon': '#843c39', 'cerise': '#d6616b','plum': '#7b4173','orchid': '#ce6dbd' };
+
 	// Assign a uuid made of a random cat and a random color
 	var randomColor = function() {
 		var colors = ['navy', 'slate', 'olive', 'moss', 'chocolate', 'buttercup', 'maroon', 'cerise', 'plum', 'orchid'];
@@ -12,10 +14,6 @@
 		var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
 		return cats[(Math.random() * cats.length) >>> 0];
 	};
-	var randomColor2 = function() {
-		var colors = ['#393b79', '#6b6ecf', '#637939', '#b5cf6b', '#8c6d31', '#e7ba52', '#843c39', '#d6616b', '#7b4173', '#ce6dbd'];
-		return colors[(Math.random() * colors.length) >>> 0];
-	};
 	color = randomColor();
 	cat = randomCat();
 	pubnubId = color + '-' + cat;
@@ -23,7 +21,7 @@
 	avatar = 'images/' + cat + '.jpg';
 
 	authors = ['images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg'];
-	colors = [randomColor2(), randomColor2(), randomColor2(), randomColor2()];
+	colors = [colorMap[randomColor()], colorMap[randomColor()], colorMap[randomColor()], colorMap[randomColor()]];
 
 	/* Polymer UI and UX */
 	var template = document.querySelector('template[is=auto-binding]');
@@ -33,22 +31,17 @@
 	template.authors = authors;
 	template.colors = colors;
 	template.color = color;
-	template.items = [
+	template.tools = [
 		{title: 'PubNub', icon: 'cloud'},
 		{title: 'Polymer', icon: 'polymer'},
 		{title: 'Amour', icon: 'favorite'}
 	];
-/*	
-	template.checkKey = function(e) {
 
-		console.log('==================================> check key');
-		console.log(e);
+	function showNewest() {
+        var div = document.querySelector('.idea-grid');
+        div.scrollTop = div.scrollHeight;
+    }
 
-		if(e.keyCode === 13 || e.charCode === 13) {
-			template.publish();
-		}
-	};
-*/
 	/* Pubnub Realtime Backend */
 
     var oldIdeas = [];
@@ -63,41 +56,26 @@
     }
 
     template.historyRetrieved = function(e) {
-    	console.log('===> HISTORY');
+    	console.log('===> HISTORY : ' + e.detail[0].length);
+
     	if(e.detail[0].length > 0) {
+    		console.log(e.detail[0]);
             oldIdeas = e.detail[0];
             this.displayIdeas(oldIdeas);
+
         }
     }
 
     template.ideaPublished = function(e) {
     	console.log('===> OK Idea published');
+    	console.log(e);
     }
 
     template.displayIdeas = function(list) {
         template.ideaList = list;
 
         // scroll to bottom when all list items are displayed
-        //template.async(showNewest);
-    };
-
-    template.publishMyIdea = function(e) {
-    	console.log('===> Publishing Started');
-    	console.log(uuid);
-    	console.log(avatarUrl);
-    	console.log(color);
-		
-		template.$.pub.idea = {
-			uuid: uuid,
-			avatar: avatarUrl,
-			color: color,
-			title: template.titleInput,
-			desc: template.descInput
-		};
-
-		console.log('===> Publishing : ' + template.$.pub.idea);
-
-		template.$.pub.publish();
+        template.async(showNewest);
     };
 	
 	template.addNewIdea = function(e) {
@@ -105,79 +83,32 @@
 	};
 	
 	template.publishMyIdea = function(title, description) {
-		alert(title);
-		return true;
-	};
-/*
-	template.subscribeCallback = function(e) {
-        if(template.$.sub.idea.length > 0) {
-        	console.log('==================================> toto');
-            //this.displayChatList(pastMsgs.concat(this.getListWithOnlineStatus(template.$.sub.messages)));
-        }
-    };
+    	console.log('===> OK publishMyIdea');
+		console.log(title);
+		console.log(description);
 
-    template.presenceChanged = function(e) {
-		var i = 0;
-        var l = template.$.sub.presence.length;
-        var d = template.$.sub.presence[l - 1];
 
-        console.log(i);
-        console.log(l);
-        console.log(d);
+		if(!title) return false;
 
-        // how many users
-        template.occupancy = d.occupancy;
-
-        // who are online
-        if(d.action === 'join') {
-            if(d.uuid.length > 35) { // console
-                d.uuid = 'the-mighty-big-cat';
-            }
-            onlineUuids.push(d.uuid);
-        } else {
-            var idx = onlineUuids.indexOf(d.uuid);
-            if(idx > -1) {
-                onlineUuids.splice(idx, 1);
-            }
-        }
-
-        i++;
-
-        // display at the left column
-        template.cats = onlineUuids;
-        // update the status at the main column
-        if(template.ideaList.length > 0) {
-            template.ideaList = this.getListWithOnlineStatus(template.ideaList);
-        }
-    };
-
-    template.getListWithOnlineStatus = function(e) {
-    	[].forEach.call(list, function(l) {
-            // sanitize avatars
-            var catName = (l.uuid + '').split('-')[1];
-            l.avatar = 'images/' + catName + '.jpg';
-
-            if (catName === undefined || /\s/.test(l.uuid)) {
-                l.uuid = 'fail-cat';
-                console.log('Oh you, I made this demo open so nice devs can play with, but you are soiling everything :-(');
-            }
-
-            if(onlineUuids.indexOf(l.uuid) > -1) {
-                l.status = 'online';
-            } else {
-                l.status = 'offline';
-            }
-        });
-        return list;
-    };
-
-    template.error = function(e) {
-        console.log(e);
-    };
-
-	template.sendMyMessage = function(e) {
-		if(!template.input) return; // if the input field is empty, do nothing.
 		template.$.pub.message = {
-			uuid: uuid, avatar: avatarUrl, color: color, text: template.input }; template.$.pub.publish(); };
-*/
+			author: uuid,
+			avatar: avatar,
+			color: colorMap[color],
+			title: title,
+			description: description
+		};
+		console.log(template.$.pub.message);
+
+		template.$.pub.publish();
+
+        return true;
+	};
+
+    template.subscribeCallback = function(e) {
+    	console.log('===> OK Idea Subscribe');
+        if(template.$.sub.messages.length > 0) {
+            this.displayIdeas(template.ideaList.concat(template.$.sub.messages));
+        }
+    };
+
 })();
