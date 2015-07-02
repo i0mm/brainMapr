@@ -1,8 +1,16 @@
 
-<polymer-element name="idea-mini" attributes="uid iid sujet date score avatar color description">
+<polymer-element name="idea-big" attributes="uid iid sujet date score avatar color description">
   <template>
   	<style>
+		:host {
+  			width:100%;
+  		}
+		.section-card {
+			width:29%;
+			margin:2%;
+		}
 		.card {
+			width:100%;
 			padding-top:25px;
 			width:300px;
 		}
@@ -19,7 +27,6 @@
 			position:relative;
    	        left: 35%;
 			top:125px;
-
 			border-radius: 50%;
 			width:80px;
 			height:80px;
@@ -29,17 +36,18 @@
     		border-width: 3px;
 		}
 	</style>
+	<paper-dialog id="dialog" transition="core-transition-center" class="section-card">
 	
-	<section layout vertical>
 		<div class="card">
 			<div class="idea-image" style="background-image: url('images/idea.jpg')">
 				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
-			<div class="idea-info">{{date}}</div>
+			<div wrap class="idea-info">{{date}}</div>
 			<div class="idea-subject" style="background-color: {{color}}">{{sujet}}</div>
 			<div class="idea-description" style="background-color: {{color}}">{{description}}</div>
 		</div>
-	</section>
+	
+	</paper-dialog>
   </template>
   <script>
   	(function() {
@@ -51,10 +59,13 @@
 		template.idea_image = idea_image;
 	});
 	
-	Polymer('idea-mini', {
+	Polymer('idea-big', {
 		uid: 0,
 		iid: 0,
 		sujet:"Empty Idea",
+		toggle: function(){
+			this.$.dialog.toggle();
+		},
 	});
   </script>
 </polymer-element>
