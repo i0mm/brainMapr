@@ -56,29 +56,26 @@
 
 			<!-- Main content -->
 			<div flex>
-				<div class="send-message" layout horizontal> 
-					<paper-fab icon="add" id="addIdea" on-tap="{{addNewIdea}}"></paper-fab> 
-				</div>
+				
 
 
-				<new-idea id="newIdea" ideasubmit="{{submitNewIdea}}"></new-idea>
-			
+			<new-idea id="newIdea" ideasubmit="{{submitNewIdea}}"></new-idea>
 
 
-			
-
-
-
-			<section layout horizontal fit id="ideas">
-				<div wrap class="idea-grid">
+			<section layout vertical fit id="ideas">
+				<div wrap flex class="idea-grid">
 					<idea-mini sujet="Mon idée est toujours superb!"></idea-mini>
 					<idea-mini sujet="Greek Greek Greek is Greek"></idea-mini>
 					<idea-mini sujet="Il faut acheter de la bière"></idea-mini>
 				</div>
+				
+				<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab> 
+				
 			</section>
 			
 			</div>
-
+			
+				
 
 		</core-scaffold>
 	</template>

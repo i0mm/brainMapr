@@ -114,3 +114,10 @@ paper-fab[icon=send] {
 .avatar.orchid {
     border-color: #ce6dbd;
 }
+
+#addIdeaFab {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+	
