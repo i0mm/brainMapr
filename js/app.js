@@ -38,15 +38,17 @@
 		{title: 'Polymer', icon: 'polymer'},
 		{title: 'Amour', icon: 'favorite'}
 	];
+/*	
 	template.checkKey = function(e) {
 
 		console.log('==================================> check key');
+		console.log(e);
 
 		if(e.keyCode === 13 || e.charCode === 13) {
 			template.publish();
 		}
 	};
-
+*/
 	/* Pubnub Realtime Backend */
 
     var oldIdeas = [];
@@ -76,7 +78,26 @@
         template.ideaList = list;
 
         // scroll to bottom when all list items are displayed
-        template.async(showNewest);
+        //template.async(showNewest);
+    };
+
+    template.publishMyIdea = function(e) {
+    	console.log('===> Publishing Started');
+    	console.log(uuid);
+    	console.log(avatarUrl);
+    	console.log(color);
+		
+		template.$.pub.idea = {
+			uuid: uuid,
+			avatar: avatarUrl,
+			color: color,
+			title: template.titleInput,
+			desc: template.descInput
+		};
+
+		console.log('===> Publishing : ' + template.$.pub.idea);
+
+		template.$.pub.publish();
     };
 	
 	template.addNewIdea = function(e) {
