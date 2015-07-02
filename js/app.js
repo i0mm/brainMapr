@@ -1,6 +1,7 @@
 (function() {
 	'use strict';
 	var uuid, pubnubId, avatar, color, cat;
+	var authors, colors;
 
 	// Assign a uuid made of a random cat and a random color
 	var randomColor = function() {
@@ -11,17 +12,26 @@
 		var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
 		return cats[(Math.random() * cats.length) >>> 0];
 	};
+	var randomColor2 = function() {
+		var colors = ['#393b79', '#6b6ecf', '#637939', '#b5cf6b', '#8c6d31', '#e7ba52', '#843c39', '#d6616b', '#7b4173', '#ce6dbd'];
+		return colors[(Math.random() * colors.length) >>> 0];
+	};
 	color = randomColor();
 	cat = randomCat();
 	pubnubId = color + '-' + cat;
 	uuid = cat;
 	avatar = 'images/' + cat + '.jpg';
 
+	authors = ['images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg', 'images/' + randomCat() + '.jpg'];
+	colors = [randomColor2(), randomColor2(), randomColor2(), randomColor2()];
+
 	/* Polymer UI and UX */
 	var template = document.querySelector('template[is=auto-binding]');
 	template.channel = 'polymer-chat';
 	template.uuid = uuid;
 	template.avatar = avatar;
+	template.authors = authors;
+	template.colors = colors;
 	template.color = color;
 	template.items = [
 		{title: 'PubNub', icon: 'cloud'},
