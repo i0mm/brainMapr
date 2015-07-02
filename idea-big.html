@@ -1,5 +1,5 @@
-
-<polymer-element name="idea-big" attributes="uid iid sujet date score avatar color description">
+<script src="bower_components/time-elements/time-elements.js"></script>
+<polymer-element name="idea-big" attributes="guid subject description author score avatar color timestamp">
   <template>
   	<style>
 		:host {
@@ -42,8 +42,8 @@
 			<div class="idea-image" style="background-image: url('images/idea.jpg')">
 				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
-			<div wrap class="idea-info">{{date}}</div>
-			<div class="idea-subject" style="background-color: {{color}}">{{sujet}}</div>
+			<div wrap class="idea-info"><time class="timestamp" is="relative-time" datetime="{{timestamp}}"></div>
+			<div class="idea-subject" style="background-color: {{color}}">{{subject}}</div>
 			<div class="idea-description" style="background-color: {{color}}">{{description}}</div>
 		</div>
 	
@@ -60,9 +60,12 @@
 	});
 	
 	Polymer('idea-big', {
-		uid: 0,
-		iid: 0,
-		sujet:"Empty Idea",
+		guid: 0,
+		score: 0,
+		author: '',
+		subject: "No idea",
+		description: "Dans le sens commun, lorsque l'on dit qu'un contenant est vide, il est en fait rempli d'air. Un verre vide, une bouteille vide, un carton vide… contiennent en fait environ 2,5^1016 molécules par millimètre cube. Un vide très poussé, un milliardième de l'atmosphère par exemple, laisse encore 	plusieurs millions de molécules par millimètre cube.",
+		timestamp: new Date().toISOString(),
 		toggle: function(){
 			this.$.dialog.toggle();
 		},

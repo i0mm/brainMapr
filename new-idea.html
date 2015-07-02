@@ -1,18 +1,6 @@
 <polymer-element name="new-idea" attributes="ideasubmit">
 
   <template>
-  <!--
-    <paper-action-dialog  id="dialog" heading="Login" transition="core-transition-top" style="background-color: #efefef">
-
-        <paper-input floatingLabel label="e-mail"></paper-input><br/>
-        <paper-input floatingLabel label="Password"></paper-input><br/>
-
-        <paper-button affirmative closeDialog on-tap="{{back}}">BACK</paper-button>
-        <paper-button affirmative default>Login</paper-button>
-
-    </paper-action-dialog >
-	-->
-	
 	
 	<paper-action-dialog id="dialog" transition="core-transition-center" heading="Nouvelle id&eacute;e">
  
@@ -20,14 +8,14 @@
 			<input is="core-input" required>
 		</paper-input-decorator>
 
-		<paper-input-decorator label="Description de l'id&eacute;e" id="idea_description" floatingLabel>
-			<paper-autogrow-textarea>
-			<textarea cols="50"></textarea>
-			</paper-autogrow-textarea>
-		</paper-input-decorator>
+     <paper-input-decorator label="Description de l'id&eacute;e" id="idea_description" floatingLabel>
+      <paper-autogrow-textarea>
+        <textarea></textarea>
+      </paper-autogrow-textarea>
+    </paper-input-decorator>
 
 		<paper-button dismissive>Non, laisse tomber...</paper-button>
-		<paper-button affirmative autofocus default on-tap="{{tap}}">Ouais super id&eacute;e!</paper-button>
+		<paper-button affirmative autofocus default style="color: #4285f4" on-tap="{{tap}}">Ouais super id&eacute;e!</paper-button>
 	</paper-action-dialog>
   </template>
 

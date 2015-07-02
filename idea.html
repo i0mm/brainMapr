@@ -2,6 +2,7 @@
 <polymer-element name="idea-mini" attributes="guid author subject description score avatar color timestamp">
   <template>
   	<style>
+  		@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
   		:host {
 			/*width :30%;*/
 			margin:1.5%;
@@ -67,6 +68,9 @@
 			padding: 5px 20px;
 			color:#fff;
 		}
+		i{
+			font-size:20px;
+		}
 
 	</style>
 	
@@ -82,7 +86,7 @@
 				</div>
 				<div class="idea-title">{{subject}}</div>
 				<div class="idea-subject">{{description}}</div>
-				<div class="idea-subscribers"><span> 28</span></div>
+				<div class="idea-subscribers"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
 			</div>
 		</div>
 	</section>
