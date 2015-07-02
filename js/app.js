@@ -85,6 +85,7 @@
 	
 	template.submitNewIdea = function(title, description) {
 		alert(title);
+		return true;
 	};
 /*
 	template.subscribeCallback = function(e) {
