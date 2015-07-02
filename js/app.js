@@ -95,7 +95,8 @@
 			avatar: avatar,
 			color: colorMap[color],
 			title: title,
-			description: description
+			description: description,
+			timestamp: new Date().toISOString()
 		};
 		console.log(template.$.pub.message);
 

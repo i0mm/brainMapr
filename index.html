@@ -40,7 +40,7 @@
 				
 				<section layout vertical center id="infoList" style="margin:20px;">
 					<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
-					<div class="bottom uuid">{{uuid}}</div>	
+					<div class="bottom uuid">{{uuid}}</div>
 				</section>
 				<section layout vertical id="toolsList">
 					<core-item label="Produit avec :"></core-item>
@@ -66,7 +66,7 @@
 
 					<div wrap class="idea-grid" layout horizontal>
 						<template repeat="{{idea in ideaList}}">
-							<idea-mini layout vertical sujet="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}"></idea-mini>
+							<idea-mini layout vertical sujet="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}"></idea-mini>
 						</template>
 	 				</div>
 

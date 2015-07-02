@@ -1,5 +1,5 @@
-
-<polymer-element name="idea-mini" attributes="uid iid sujet description date score avatar color">
+<script src="bower_components/time-elements/time-elements.js"></script>
+<polymer-element name="idea-mini" attributes="uid iid sujet description score avatar color timestamp">
   <template>
   	<style>
   		:host {
@@ -77,12 +77,12 @@
 			</div>
 			<div class="idea-content" style="background-color: {{color}}">
 				<div class="top-infos">
-					<div class="idea-date">{{date}}09/12/2015</div>
+					<div class="idea-date"><time class="timestamp" is="relative-time" datetime="{{timestamp}}"></time></div>
 					<div class="idea-points">{{points}}55 Pts</div>
 				</div>
 				<div class="idea-title">{{sujet}}</div>
 				<div class="idea-subject">{{description}}</div>
-				<div class="idea-subscribers"><span><i class="fa fa-user-secret"></i> 28</span></div>
+				<div class="idea-subscribers"><span> 28</span></div>
 			</div>
 		</div>
 	</section>
@@ -101,6 +101,8 @@
 		uid: 0,
 		iid: 0,
 		sujet:"Empty Idea",
+		description:"Empty Idea",
+		timestamp: new Date().toISOString(),
 	});
   </script>
 </polymer-element>
