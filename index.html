@@ -55,45 +55,24 @@
 			<!-- App Title -->
 			<div tool layout horizontal flex>
 				<span flex>Brain Mapr</span>
-				<!--<core-icon icon="account-circle"></core-icon>-->
-				<span><!-- number of people online --></span> 
 			</div>
 
 			<!-- Main content -->
 			<div flex>
-
+			
+				<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
 				
+				<section layout horizontal fit id="ideas">
 
+					<div wrap class="idea-grid" layout horizontal>
+						<template repeat="{{idea in ideaList}}">
+							<idea-mini layout vertical sujet="{{idea.title}}" avatar="{{idea.avatar}}" color="{{idea.color}}"></idea-mini>
+						</template>
+	 				</div>
 
-			<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
-
-
-
-			<section layout horizontal fit id="ideas">
-				<div wrap class="idea-grid" layout horizontal>
-					<idea-mini layout vertical sujet="Mon idée est toujours superb!" avatar="{{authors[0]}}" color="{{colors[0]}}"></idea-mini>
-					<idea-mini layout vertical sujet="Greek Greek Greek is Greek" avatar="{{authors[1]}}" color="{{colors[1]}}"></idea-mini>
-					<idea-mini layout vertical sujet="Il faut acheter de la bière" avatar="{{authors[2]}}" color="{{colors[2]}}"></idea-mini>
-
-
-			<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
-
-			<section layout horizontal fit id="ideas">
-				<div wrap class="idea-grid">
-					<template repeat="{{idea in ideaList}}">
-						<idea-mini sujet="{{idea.title}}" avatar="{{idea.avatar}}" color="{{idea.color}}"></idea-mini>
-					</template>
-					<!--
-					<idea-mini sujet="Mon idée est toujours superb!" avatar="{{authors[0]}}" color="{{colors[0]}}"></idea-mini>
-					<idea-mini sujet="Greek Greek Greek is Greek" avatar="{{authors[1]}}" color="{{colors[1]}}"></idea-mini>
-					<idea-mini sujet="Il faut acheter de la bière" avatar="{{authors[2]}}" color="{{colors[2]}}"></idea-mini>
-					-->
-
-				</div>
-				
-				<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab> 
-				
-			</section>
+	 				<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab>
+	 				
+	 			</section>
 			
 			</div>
 			
