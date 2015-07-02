@@ -7,6 +7,8 @@
 	<link rel="import" href="bower_components/paper-input/paper-input.html">
 	<link rel="import" href="bower_components/paper-fab/paper-fab.html">
 	
+	<link rel="import" href="idea.html">
+
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,7 +23,6 @@
 		</core-pubnub>
 
 		<core-scaffold>
-
 			<!-- Drawer panel -->
 			<core-header-panel navigation flex>
 				<core-toolbar id="navheader" class="tall">
@@ -49,7 +50,17 @@
 			</div>
 
 			<!-- Main content -->
-			<div flex></div>
+			<div flex>
+
+			<section layout horizontal fit id="ideas">
+				<div wrap class="idea-grid">
+					<idea-mini sujet="Mon idée est toujours superb!"></idea-mini>
+					<idea-mini sujet="Greek Greek Greek is Greek"></idea-mini>
+					<idea-mini sujet="Il faut acheter de la bière"></idea-mini>
+				</div>
+			</section>
+			
+			</div>
 
 		</core-scaffold>
 	</template>

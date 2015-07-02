@@ -1,6 +1,7 @@
 (function() {
 	'use strict';
-	var uuid, avatar, color, cat;
+	var uuid, pubnubId, avatar, color, cat;
+
 	// Assign a uuid made of a random cat and a random color
 	var randomColor = function() {
 		var colors = ['navy', 'slate', 'olive', 'moss', 'chocolate', 'buttercup', 'maroon', 'cerise', 'plum', 'orchid'];
@@ -12,6 +13,7 @@
 	};
 	color = randomColor();
 	cat = randomCat();
+	pubnubId = color + '-' + cat;
 	uuid = cat;
 	avatar = 'images/' + cat + '.jpg';
 
@@ -27,11 +29,116 @@
 		{title: 'Amour', icon: 'favorite'}
 	];
 	template.checkKey = function(e) {
+
+		console.log('==================================> check key');
+
 		if(e.keyCode === 13 || e.charCode === 13) {
 			template.publish();
 		}
 	};
+
+	/* Pubnub Realtime Backend */
+
+    var oldIdeas = [];
+    template.ideaList = [];
+
+    template.testSucceed = function(e) {
+    	console.log('===> OK');
+    }
+
+    template.error = function(e) {
+    	console.log('===> KO');
+    }
+
+    template.historyRetrieved = function(e) {
+    	console.log('===> HISTORY');
+    	if(e.detail[0].length > 0) {
+            oldIdeas = e.detail[0];
+            this.displayIdeas(oldIdeas);
+        }
+    }
+
+    template.ideaPublished = function(e) {
+    	console.log('===> OK Idea published');
+    }
+
+    template.displayIdeas = function(list) {
+        template.ideaList = list;
+
+        // scroll to bottom when all list items are displayed
+        template.async(showNewest);
+    };
+/*
+	template.subscribeCallback = function(e) {
+        if(template.$.sub.idea.length > 0) {
+        	console.log('==================================> toto');
+            //this.displayChatList(pastMsgs.concat(this.getListWithOnlineStatus(template.$.sub.messages)));
+        }
+    };
+
+    template.presenceChanged = function(e) {
+		var i = 0;
+        var l = template.$.sub.presence.length;
+        var d = template.$.sub.presence[l - 1];
+
+        console.log(i);
+        console.log(l);
+        console.log(d);
+
+        // how many users
+        template.occupancy = d.occupancy;
+
+        // who are online
+        if(d.action === 'join') {
+            if(d.uuid.length > 35) { // console
+                d.uuid = 'the-mighty-big-cat';
+            }
+            onlineUuids.push(d.uuid);
+        } else {
+            var idx = onlineUuids.indexOf(d.uuid);
+            if(idx > -1) {
+                onlineUuids.splice(idx, 1);
+            }
+        }
+
+        i++;
+
+        // display at the left column
+        template.cats = onlineUuids;
+        // update the status at the main column
+        if(template.ideaList.length > 0) {
+            template.ideaList = this.getListWithOnlineStatus(template.ideaList);
+        }
+    };
+
+    template.getListWithOnlineStatus = function(e) {
+    	[].forEach.call(list, function(l) {
+            // sanitize avatars
+            var catName = (l.uuid + '').split('-')[1];
+            l.avatar = 'images/' + catName + '.jpg';
+
+            if (catName === undefined || /\s/.test(l.uuid)) {
+                l.uuid = 'fail-cat';
+                console.log('Oh you, I made this demo open so nice devs can play with, but you are soiling everything :-(');
+            }
+
+            if(onlineUuids.indexOf(l.uuid) > -1) {
+                l.status = 'online';
+            } else {
+                l.status = 'offline';
+            }
+        });
+        return list;
+    };
+
+    template.error = function(e) {
+        console.log(e);
+    };
+
 	template.sendMyMessage = function(e) {
-		template.publish();
-	};
+		if(!template.input) return; // if the input field is empty, do nothing.
+		template.$.pub.message = {
+			uuid: uuid, avatar: avatarUrl, color: color, text: template.input }; template.$.pub.publish(); };
+*/
+
 })();
