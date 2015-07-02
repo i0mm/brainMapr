@@ -1,0 +1,69 @@
+
+<polymer-element name="idea-mini" attributes="uid iid sujet date score">
+  <template>
+  	<style>
+		.card {
+			padding-top:25px;
+
+			width:300px;
+		}
+		.idea-subject {
+			color:white;
+			font-size:20px;
+			background-color:#db4437;
+			padding:10px;
+			padding-top:40px;
+		}
+		.idea-image {
+			height:170px;
+		}
+		.idea-avatar {
+			position:relative;
+   	        left: 35%;
+			top:125px;
+
+			border-radius: 50%;
+			width:80px;
+			height:80px;
+		    background-size: contain;
+		}
+	</style>
+	
+	<section layout vertical>
+		<div class="card">
+			<div class="idea-image" style="background-image: url('images/idea.jpg')">
+				<div class="idea-avatar" style="background-image: url('images/sphynx.jpg')"></div>
+			</div>
+			<div class="idea-info">{{date}}</div>
+			<div class="idea-subject">{{sujet}}</div>
+		</div>
+	</section>
+  </template>
+  <script>
+  	(function() {
+		'use strict';
+		var uuid, avatar, cat, color;
+
+		var randomColor = function() {
+		var colors = ['navy', 'slate', 'olive', 'moss', 'chocolate', 'buttercup', 'maroon', 'cerise', 'plum', 'orchid'];
+			return colors[(Math.random() * colors.length) >>> 0];
+		};
+		var randomCat = function() {
+			var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
+			return cats[(Math.random() * cats.length) >>> 0];
+		};
+		color = randomColor();
+		cat = randomCat();
+		avatar = 'images/' + cat + '.jpg';
+
+		var template = document.querySelector('template');
+		template.avatar = avatar;
+	});
+	
+	Polymer('idea-mini', {
+		uid: 0,
+		iid: 0,
+		sujet:"Empty Idea",
+	});
+  </script>
+</polymer-element>

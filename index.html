@@ -10,6 +10,8 @@
 	<link rel="import" href="bower_components/paper-dialog/paper-action-dialog.html">
 	<link rel="import" href="new-idea.html">
 	
+	<link rel="import" href="idea.html">
+
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,7 +28,6 @@
 		</core-pubnub>
 
 		<core-scaffold>
-
 			<!-- Drawer panel -->
 			<core-header-panel navigation flex>
 				<core-toolbar id="navheader" class="tall">
@@ -61,13 +62,22 @@
 
 
 				<new-idea id="newIdea" ideasubmit="{{submitNewIdea}}"></new-idea>
+			
 
+
+			
+
+
+
+			<section layout horizontal fit id="ideas">
+				<div wrap class="idea-grid">
+					<idea-mini sujet="Mon idée est toujours superb!"></idea-mini>
+					<idea-mini sujet="Greek Greek Greek is Greek"></idea-mini>
+					<idea-mini sujet="Il faut acheter de la bière"></idea-mini>
+				</div>
+			</section>
+			
 			</div>
-			
-
-
-			
-
 
 
 		</core-scaffold>
