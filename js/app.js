@@ -34,4 +34,14 @@
 	template.sendMyMessage = function(e) {
 		template.publish();
 	};
+	
+	template.addNewIdea = function(e) {
+		document.getElementById('newIdea').toggle();
+	};
+	
+	template.submitNewIdea = function(title, description) {
+		alert(title);
+	};
+	
+	
 })();
