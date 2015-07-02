@@ -81,8 +81,7 @@
 			avatar: avatar,
 			color: colorMap[color],
 			title: title,
-			description: description,
-			timestamp: new Date().toISOString()
+			description: description
 		};
 
 		template.$.pub.publish();
