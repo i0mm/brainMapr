@@ -1,5 +1,5 @@
-
-<polymer-element name="idea-mini" attributes="uid iid sujet date score avatar color">
+<script src="bower_components/time-elements/time-elements.js"></script>
+<polymer-element name="idea-mini" attributes="guid author subject description score avatar color timestamp">
   <template>
   	<style>
   		:host {
@@ -10,7 +10,7 @@
 
 		}
 		.card {
-			width:400px;
+			width:330px;
 			/*height:400px;*/
 			padding-top:25px;
 		}
@@ -77,14 +77,12 @@
 			</div>
 			<div class="idea-content" style="background-color: {{color}}">
 				<div class="top-infos">
-					<div class="idea-date">{{date}}09/12/2015</div>
-					<div class="idea-points">{{points}}55 Pts</div>
+					<div class="idea-date"><time class="timestamp" is="relative-time" datetime="{{timestamp}}"></time></div>
+					<div class="idea-points">{{score}} Pts</div>
 				</div>
-				<div class="idea-title">{{title}}Titre de mon idée</div>
-				<div class="idea-subject">
-					{{sujet}}Has autem provincias, quas Orontes ambiens amnis imosque pedes Cassii montis illius celsi praetermeans funditur in Parthenium mare, Gnaeus Pompeius superato Tigrane regnis Armeniorum abstractas dicioni Romanae coniunxit.					
-				</div>
-				<div class="idea-subscribers"><span><i class="fa fa-user-secret"></i> 28</span></div>
+				<div class="idea-title">{{subject}}</div>
+				<div class="idea-subject">{{description}}</div>
+				<div class="idea-subscribers"><span> 28</span></div>
 			</div>
 		</div>
 	</section>
@@ -92,17 +90,16 @@
   <script>
   	(function() {
 		'use strict';
-		var uuid, idea_image;
-		idea_image = images/tabby.jpg;
-
 		var template = document.querySelector('template');
-		template.idea_image = idea_image;
 	});
 	
 	Polymer('idea-mini', {
-		uid: 0,
-		iid: 0,
-		sujet:"Empty Idea",
+		guid: 0,
+		score: 0,
+		author: '',
+		subject: "No idea",
+		description: "Dans le sens commun, lorsque l'on dit qu'un contenant est vide, il est en fait rempli d'air. Un verre vide, une bouteille vide, un carton vide… contiennent en fait environ 2,5^1016 molécules par millimètre cube. Un vide très poussé, un milliardième de l'atmosphère par exemple, laisse encore 	plusieurs millions de molécules par millimètre cube.",
+		timestamp: new Date().toISOString(),
 	});
   </script>
 </polymer-element>

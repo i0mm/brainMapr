@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
 	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
 	<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
 	<link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
 	<link rel="import" href="bower_components/core-item/core-item.html">
@@ -56,8 +63,6 @@
 			<!-- App Title -->
 			<div tool layout horizontal flex>
 				<span flex>Brain Mapr</span>
-				<!--<core-icon icon="account-circle"></core-icon>-->
-				<span><!-- number of people online --></span> 
 			</div>
 
 			<!-- Main content -->
@@ -68,7 +73,7 @@
 					<section layout horizontal fit id="ideas">
 						<div class="idea-grid" flex horizontal wrap around-justified layout cross-fade>
 							<template repeat="{{idea in ideaList}}">
-								<idea-mini layout vertical sujet="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}"></idea-mini>
+								<idea-mini layout vertical subject="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}" score="44"></idea-mini>
 							</template>
 		 				</div>
 						<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab> 

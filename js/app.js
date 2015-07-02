@@ -37,15 +37,14 @@
 		{title: 'Amour', icon: 'favorite'}
 	];
 
-	function showNewest() {
-        var div = document.querySelector('.idea-grid');
-        div.scrollTop = div.scrollHeight;
-    }
-
 	/* Pubnub Realtime Backend */
 
     var oldIdeas = [];
     template.ideaList = [];
+
+	function S4() {
+    	return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+	}
 
     template.error = function(e) {
     	console.log('===> KO');
@@ -54,19 +53,9 @@
 
     template.historyRetrieved = function(e) {
     	if(e.detail[0].length > 0) {
-    		console.log(e.detail[0]);
-            oldIdeas = e.detail[0];
-            this.displayIdeas(oldIdeas);
-
+            template.ideaList = e.detail[0].reverse();
         }
     }
-
-    template.displayIdeas = function(list) {
-        template.ideaList = list;
-
-        // scroll to bottom when all list items are displayed
-        template.async(showNewest);
-    };
 	
 	template.addNewIdea = function(e) {
 		document.getElementById('newIdea').toggle();
@@ -77,11 +66,13 @@
 		if(!description) return false;
 
 		template.$.pub.message = {
+			guid: (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase(),
 			author: uuid,
 			avatar: avatar,
 			color: colorMap[color],
 			title: title,
-			description: description
+			description: description,
+			timestamp: new Date().toISOString()
 		};
 
 		template.$.pub.publish();
@@ -91,7 +82,7 @@
 
     template.subscribeCallback = function(e) {
         if(template.$.sub.messages.length > 0) {
-            this.displayIdeas(template.ideaList.concat(template.$.sub.messages));
+        	template.ideaList = template.$.sub.messages.concat(template.ideaList);
         }
     };
 
