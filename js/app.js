@@ -47,28 +47,18 @@
     var oldIdeas = [];
     template.ideaList = [];
 
-    template.testSucceed = function(e) {
-    	console.log('===> OK');
-    }
-
     template.error = function(e) {
     	console.log('===> KO');
+    	console.log(e);
     }
 
     template.historyRetrieved = function(e) {
-    	console.log('===> HISTORY : ' + e.detail[0].length);
-
     	if(e.detail[0].length > 0) {
     		console.log(e.detail[0]);
             oldIdeas = e.detail[0];
             this.displayIdeas(oldIdeas);
 
         }
-    }
-
-    template.ideaPublished = function(e) {
-    	console.log('===> OK Idea published');
-    	console.log(e);
     }
 
     template.displayIdeas = function(list) {
@@ -83,12 +73,8 @@
 	};
 	
 	template.publishMyIdea = function(title, description) {
-    	console.log('===> OK publishMyIdea');
-		console.log(title);
-		console.log(description);
-
-
 		if(!title) return false;
+		if(!description) return false;
 
 		template.$.pub.message = {
 			author: uuid,
@@ -98,7 +84,6 @@
 			description: description,
 			timestamp: new Date().toISOString()
 		};
-		console.log(template.$.pub.message);
 
 		template.$.pub.publish();
 
@@ -106,10 +91,22 @@
 	};
 
     template.subscribeCallback = function(e) {
-    	console.log('===> OK Idea Subscribe');
         if(template.$.sub.messages.length > 0) {
             this.displayIdeas(template.ideaList.concat(template.$.sub.messages));
         }
     };
 
+
+	/* Animated */
+    template.transitionend = function() {
+        if (this.lastSelected) {
+          this.lastSelected = null;
+        }
+  	}
+
+	template.back = function() {
+		this.lastSelected = this.$.pages.selected;
+		console.log(this.lastSelected);
+		this.$.pages.selected = 0;
+	}
 })();

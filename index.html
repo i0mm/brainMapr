@@ -3,6 +3,7 @@
 <head>
 	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 	<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+	<link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
 	<link rel="import" href="bower_components/core-item/core-item.html">
 	<link rel="import" href="bower_components/paper-input/paper-input.html">
 	<link rel="import" href="bower_components/paper-button/paper-button.html">
@@ -59,12 +60,12 @@
 
 			<!-- Main content -->
 			<div flex>
-			
+				<core-animated-pages id="pages" flex selected="0" on-core-animated-pages-transition-end="{{transitionend}}" transitions="cross-fade-all hero-transition">
 				<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
 				
 				<section layout horizontal fit id="ideas">
 
-					<div wrap class="idea-grid" layout horizontal>
+					<div class="idea-grid" flex horizontal wrap around-justified layout cross-fade>
 						<template repeat="{{idea in ideaList}}">
 							<idea-mini layout vertical sujet="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}"></idea-mini>
 						</template>
@@ -79,7 +80,6 @@
 		</core-scaffold>
 	</template>
 	
-
 	<script src="js/app.js"></script>
 </body>
 </html>
