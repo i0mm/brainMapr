@@ -3,38 +3,71 @@
   <template>
   	<style>
   		:host {
-  			width:100%;
+			/*width :30%;*/
+			margin:1.5%;
   		}
 		.section-card {
-			width:29%;
-			margin:2%;
+
 		}
 		.card {
-			width:100%;
+			width:400px;
+			/*height:400px;*/
 			padding-top:25px;
-			width:300px;
 		}
 		.idea-subject {
 			color:white;
-			font-size:20px;
-			padding:10px;
-			padding-top:40px;
+			font-size:16px;
+			padding:20px;
+			height: 130px;
+			overflow: hidden;
 		}
 		.idea-image {
 			height:170px;
 		}
 		.idea-avatar {
 			position:relative;
-   	        left: 35%;
+   	        left: 40%;
 			top:125px;
 			border-radius: 50%;
 			width:80px;
 			height:80px;
 		    background-size: contain;
-
 		    border-style: solid;
     		border-width: 3px;
 		}
+		.top-infos {
+			position: relative;
+		}
+		.idea-date {
+			position: absolute;
+			top: 15px;
+			left: 20px;
+			color:#fff;
+			font-size:14px;
+		}
+		.idea-points{
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			color:#fff;
+			font-size:20px;
+			font-weight: bold;
+		}
+		.idea-title {
+			padding-top:50px;
+			text-align: center;
+			color:#fff;
+			font-size: 26px;
+		}
+		.idea-content {
+			padding-bottom: 20px;
+		}
+		.idea-subscribers {
+			text-align: right;			
+			padding: 5px 20px;
+			color:#fff;
+		}
+
 	</style>
 	
 	<section class="section-card" layout vertical>
@@ -42,8 +75,17 @@
 			<div class="idea-image" style="background-image: url('images/idea.jpg')">
 				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
-			<div class="idea-info">{{date}}</div>
-			<div class="idea-subject" style="background-color: {{color}}">{{sujet}}</div>
+			<div class="idea-content" style="background-color: {{color}}">
+				<div class="top-infos">
+					<div class="idea-date">{{date}}09/12/2015</div>
+					<div class="idea-points">{{points}}55 Pts</div>
+				</div>
+				<div class="idea-title">{{title}}Titre de mon idée</div>
+				<div class="idea-subject">
+					{{sujet}}Has autem provincias, quas Orontes ambiens amnis imosque pedes Cassii montis illius celsi praetermeans funditur in Parthenium mare, Gnaeus Pompeius superato Tigrane regnis Armeniorum abstractas dicioni Romanae coniunxit.					
+				</div>
+				<div class="idea-subscribers"><span>28</span></div>
+			</div>
 		</div>
 	</section>
   </template>
