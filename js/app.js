@@ -11,7 +11,7 @@
 		return colors[(Math.random() * colors.length) >>> 0];
 	};
 	var randomCat = function() {
-		var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
+		var cats = ['Anthony', 'Arnaud', 'Johanna', 'Christophe', 'Richard', 'Marco', 'Adeline', 'Nicolas', 'Roberto', 'Bruno', 'Juliette'];
 		return cats[(Math.random() * cats.length) >>> 0];
 	};
 	color = randomColor();
