@@ -168,7 +168,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div id="comments">
-					<paper-input></paper-input>
+					<paper-input id="newcomment" label="Commentez!"></paper-input>
 					<!--<<<<<<<<<<<<<<<<<Comment Template<<<<<<<<<<<<<<<<<<<<<<-->
                    <div class="message">
                    		<div class="avatar-message">
@@ -204,12 +204,14 @@
 				if(currentDisplayed == this.id)
 					currentDisplayed = "";
 				this.$.comments.style.display = "none";
+				this.$.newcomment.value = "";
 			}
 			else{
 				if(currentDisplayed != "")
 					document.getElementById(currentDisplayed).togglecomments();
 				currentDisplayed = this.id;
 				this.$.comments.style.display = "block";
+				this.$.newcomment.focus();
 			}
 		},
 	});
