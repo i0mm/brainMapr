@@ -73,7 +73,7 @@
 					<section layout horizontal fit id="ideas">
 						<div class="idea-grid" flex horizontal wrap around-justified layout cross-fade>
 							<template repeat="{{idea in ideaList}}">
-									<idea-mini layout vertical subject="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}" score="44"></idea-mini>
+									<idea-mini layout vertical id="idea-{{idea.guid}}" subject="{{idea.title}}" description="{{idea.description}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}" score="44"></idea-mini>
 							</template>
 		 				</div>
 					</section>

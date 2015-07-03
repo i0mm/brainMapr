@@ -75,11 +75,14 @@
 		i{
 			font-size:20px;
 		}
+		#comments{
+			display: none;
+		}
 
 	</style>
 	
 	<section class="section-card" layout vertical>
-		<div class="card">
+		<div class="card" on-tap="{{togglecomments}}">
 			<div class="idea-image" style="background-image: url('images/idea.jpg')">
 				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
@@ -91,6 +94,28 @@
 				<div class="idea-title">{{subject}}</div>
 				<div class="idea-subject">{{description}}</div>
 				<div class="idea-subscribers"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
+				<div id="comments">
+					<ul>
+						<li>Trop sucks!</li>
+						<li>c'est nul</li>
+						<li>T fou, tro b1!</li>
+						<li>Trop sucks!</li>
+						<li>c'est nul</li>
+						<li>T fou, tro b1!</li>
+						<li>Trop sucks!</li>
+						<li>c'est nul</li>
+						<li>T fou, tro b1!</li>
+						<li>Trop sucks!</li>
+						<li>c'est nul</li>
+						<li>T fou, tro b1!</li>
+						<li>Trop sucks!</li>
+						<li>c'est nul</li>
+						<li>T fou, tro b1!</li>
+						<li>Trop sucks!</li>
+						<li>c'est nul</li>
+						<li>T fou, tro b1!</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -108,6 +133,19 @@
 		subject: "No idea",
 		description: "Dans le sens commun, lorsque l'on dit qu'un contenant est vide, il est en fait rempli d'air. Un verre vide, une bouteille vide, un carton vide… contiennent en fait environ 2,5^1016 molécules par millimètre cube. Un vide très poussé, un milliardième de l'atmosphère par exemple, laisse encore 	plusieurs millions de molécules par millimètre cube.",
 		timestamp: new Date().toISOString(),
+		togglecomments: function(event, detail, sender) {
+			if(this.$.comments.style.display == "block"){
+				if(currentDisplayed == this.id)
+					currentDisplayed = "";
+				this.$.comments.style.display = "none";
+			}
+			else{
+				if(currentDisplayed != "")
+					document.getElementById(currentDisplayed).togglecomments();
+				currentDisplayed = this.id;
+				this.$.comments.style.display = "block";
+			}
+		}
 	});
   </script>
 </polymer-element>
