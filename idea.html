@@ -153,9 +153,13 @@
 					<div class="idea-date"><time class="timestamp" is="relative-time" datetime="{{timestamp}}"></time></div>
 					<div class="idea-points">{{score}} Pts</div>
 				</div>
-				<div class="idea-title" on-tap="{{togglecomments}}">{{subject}}</div>
-				<div class="idea-subject" on-tap="{{togglecomments}}">{{description}}</div>
-				<div class="idea-subscribers" on-tap="{{togglecomments}}"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
+				<div class="idea-title">{{subject}}</div>
+				<div class="idea-subject">{{description}}</div>
+				<div class="social-icons">
+					<div class="idea-subscribers"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
+					<div class="idea-comments" on-tap="{{togglecomments}}"><span>9 </span><i id="icon" class="fa fa-comment"></i></div>
+				</div>
+				<div class="clearfix"></div>
 				<div id="comments">
 					<paper-input></paper-input>
 					<!--<<<<<<<<<<<<<<<<<Comment Template<<<<<<<<<<<<<<<<<<<<<<-->
@@ -171,7 +175,6 @@
                    </div>
 					<!--<<<<<<<<<<<<<<<<<End Comment Template<<<<<<<<<<<<<<<<<<<<<<--> 
 				</div>
-				<div class="clearfix"></div>
 			</div>
 		</div>
 	</section>
@@ -189,6 +192,19 @@
 		subject: "No idea",
 		description: "Dans le sens commun, lorsque l'on dit qu'un contenant est vide, il est en fait rempli d'air. Un verre vide, une bouteille vide, un carton vide… contiennent en fait environ 2,5^1016 molécules par millimètre cube. Un vide très poussé, un milliardième de l'atmosphère par exemple, laisse encore 	plusieurs millions de molécules par millimètre cube.",
 		timestamp: new Date().toISOString(),
+		togglecomments: function(event, detail, sender) {
+			if(this.$.comments.style.display == "block"){
+				if(currentDisplayed == this.id)
+					currentDisplayed = "";
+				this.$.comments.style.display = "none";
+			}
+			else{
+				if(currentDisplayed != "")
+					document.getElementById(currentDisplayed).togglecomments();
+				currentDisplayed = this.id;
+				this.$.comments.style.display = "block";
+			}
+		},
 	});
   </script>
 </polymer-element>
