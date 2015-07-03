@@ -82,19 +82,20 @@
 	</style>
 	
 	<section class="section-card" layout vertical>
-		<div class="card" on-tap="{{togglecomments}}">
-			<div class="idea-image" style="background-image: url('images/idea.jpg')">
+		<div class="card">
+			<div class="idea-image" style="background-image: url('images/idea.jpg')" on-tap="{{togglecomments}}">
 				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
 			<div class="idea-content" style="background-color: {{color}}">
-				<div class="top-infos">
+				<div class="top-infos" on-tap="{{togglecomments}}">
 					<div class="idea-date"><time class="timestamp" is="relative-time" datetime="{{timestamp}}"></time></div>
 					<div class="idea-points">{{score}} Pts</div>
 				</div>
-				<div class="idea-title">{{subject}}</div>
-				<div class="idea-subject">{{description}}</div>
-				<div class="idea-subscribers"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
+				<div class="idea-title" on-tap="{{togglecomments}}">{{subject}}</div>
+				<div class="idea-subject" on-tap="{{togglecomments}}">{{description}}</div>
+				<div class="idea-subscribers" on-tap="{{togglecomments}}"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
 				<div id="comments">
+					<paper-input></paper-input>
 					<ul>
 						<li>Trop sucks!</li>
 						<li>c'est nul</li>
