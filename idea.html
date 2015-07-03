@@ -69,9 +69,26 @@
 		}
 		.idea-subscribers {
 			text-align: right;			
-			padding: 5px 20px;
+			padding: 5px 20px 5px 10px;
 			color:#fff;
+			display:inline-block;
+			vertical-align: middle;
+			width:50px;
+			float:right;
 		}
+		.idea-comments {
+			text-align: right;			
+			padding: 5px 0;
+			color:#fff;
+			display:inline-block;
+			vertical-align: middle;
+			width:50px;
+			float:right;
+		}
+		.clearfix {
+			clear:both;
+		}
+
 		i{
 			font-size:20px;
 		}
@@ -90,7 +107,11 @@
 				</div>
 				<div class="idea-title">{{subject}}</div>
 				<div class="idea-subject">{{description}}</div>
-				<div class="idea-subscribers"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
+				<div class="social-icons">
+					<div class="idea-subscribers"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
+					<div class="idea-comments"><span>9 </span><i id="icon" class="fa fa-comment"></i></div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</section>
