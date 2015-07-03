@@ -34,9 +34,9 @@
 			publish_key="pub-c-fccdc23d-8e64-4031-9f9e-64c275dc4b4b"
 			subscribe_key="sub-c-67616358-2006-11e5-947a-02ee2ddab7fe"
 			uuid="{{pubnubId}}">
-			<core-pubnub-subscribe id="sub" channel="idea-channel-one" on-callback="{{subscribeCallback}}" on-error="{{error}}">
-			    <core-pubnub-publish id="pub" channel="idea-channel-one" message="" on-error="{{error}}"></core-pubnub-publish>
-				<core-pubnub-history id="history" channel="idea-channel-one" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
+			<core-pubnub-subscribe id="sub" channel="idea-channel-demo" on-callback="{{subscribeCallback}}" on-error="{{error}}">
+			    <core-pubnub-publish id="pub" channel="idea-channel-demo" message="" on-error="{{error}}"></core-pubnub-publish>
+				<core-pubnub-history id="history" channel="idea-channel-demo" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
 		    </core-pubnub-subscribe>
 		</core-pubnub>
 

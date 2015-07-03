@@ -10,5 +10,5 @@ app.use(express.compress());
 // Serve up content from public directory
 app.use(express.static(__dirname + '', { maxAge: oneDay }));
 
-console.log("HTTP Listen on tcp/3000");
-app.listen(process.env.PORT || 3000);
+console.log("HTTP Listen on tcp/80");
+app.listen(process.env.PORT || 80);
