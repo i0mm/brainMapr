@@ -10,12 +10,12 @@
 
      <paper-input-decorator label="Description de l'id&eacute;e" id="idea_description" floatingLabel>
       <paper-autogrow-textarea>
-        <textarea cols="50"></textarea>
+        <textarea></textarea>
       </paper-autogrow-textarea>
     </paper-input-decorator>
 
-		<paper-button dismissive on-tap="{{cancel}}">Non, laisse tomber...</paper-button>
-		<paper-button affirmative autofocus default style="color: #4285f4" on-tap="{{submit}}">Ouais super id&eacute;e!</paper-button>
+		<paper-button dismissive>Non, laisse tomber...</paper-button>
+		<paper-button affirmative autofocus default style="color: #4285f4" on-tap="{{tap}}">Ouais super id&eacute;e!</paper-button>
 	</paper-action-dialog>
   </template>
 
@@ -35,20 +35,16 @@
       openDialog: function() {
         this.$.dialog.open();
       },
-	   toggle: function(){
-		  this.$.dialog.toggle();
+	  toggle: function(){
+		this.$.dialog.toggle();
 		},
-		submit: function(event, detail, sender) {
+		tap: function(event, detail, sender) {
 			var result = this.ideasubmit(this.$.idea_title.input.value, this.$.idea_description.input.value);
 			if(result){
 			this.$.idea_title.input.value = "";
 			this.$.idea_description.input.value = "";
 			}
-		},
-    cancel: function(event, detail, sender) {
-      this.$.idea_title.input.value = "";
-      this.$.idea_description.input.value = "";
-    }
+		}
     });
   </script>
 

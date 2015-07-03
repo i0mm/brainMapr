@@ -69,9 +69,26 @@
 		}
 		.idea-subscribers {
 			text-align: right;			
-			padding: 5px 20px;
+			padding: 5px 20px 5px 10px;
 			color:#fff;
+			display:inline-block;
+			vertical-align: middle;
+			width:50px;
+			float:right;
 		}
+		.idea-comments {
+			text-align: right;			
+			padding: 5px 0;
+			color:#fff;
+			display:inline-block;
+			vertical-align: middle;
+			width:50px;
+			float:right;
+		}
+		.clearfix {
+			clear:both;
+		}
+
 		i{
 			font-size:20px;
 		}
@@ -128,11 +145,11 @@
 	
 	<section class="section-card" layout vertical>
 		<div class="card">
-			<div class="idea-image" style="background-image: url('images/idea.jpg')" on-tap="{{togglecomments}}">
+			<div class="idea-image" style="background-image: url('images/idea.jpg')">
 				<div class="idea-avatar" style="background-image: url({{avatar}}); border-color: {{color}}"></div>
 			</div>
 			<div class="idea-content" style="background-color: {{color}}">
-				<div class="top-infos" on-tap="{{togglecomments}}">
+				<div class="top-infos">
 					<div class="idea-date"><time class="timestamp" is="relative-time" datetime="{{timestamp}}"></time></div>
 					<div class="idea-points">{{score}} Pts</div>
 				</div>
@@ -154,6 +171,7 @@
                    </div>
 					<!--<<<<<<<<<<<<<<<<<End Comment Template<<<<<<<<<<<<<<<<<<<<<<--> 
 				</div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</section>
@@ -171,19 +189,6 @@
 		subject: "No idea",
 		description: "Dans le sens commun, lorsque l'on dit qu'un contenant est vide, il est en fait rempli d'air. Un verre vide, une bouteille vide, un carton vide… contiennent en fait environ 2,5^1016 molécules par millimètre cube. Un vide très poussé, un milliardième de l'atmosphère par exemple, laisse encore 	plusieurs millions de molécules par millimètre cube.",
 		timestamp: new Date().toISOString(),
-		togglecomments: function(event, detail, sender) {
-			if(this.$.comments.style.display == "block"){
-				if(currentDisplayed == this.id)
-					currentDisplayed = "";
-				this.$.comments.style.display = "none";
-			}
-			else{
-				if(currentDisplayed != "")
-					document.getElementById(currentDisplayed).togglecomments();
-				currentDisplayed = this.id;
-				this.$.comments.style.display = "block";
-			}
-		}
 	});
   </script>
 </polymer-element>

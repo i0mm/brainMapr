@@ -1,5 +1,4 @@
-var currentDisplayed = "";
-	(function() {
+(function() {
 	'use strict';
 	var uuid, pubnubId, avatar, color, cat;
 	var authors, colors;
