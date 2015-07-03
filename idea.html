@@ -1,5 +1,5 @@
 <script src="bower_components/time-elements/time-elements.js"></script>
-<polymer-element name="idea-mini" attributes="guid author subject description score avatar color timestamp">
+<polymer-element name="idea-mini" attributes="guid uuid author subject description score avatar color timestamp">
   <template>
   	<style>
   		@import url('css/font-awesome.min.css');
@@ -78,8 +78,53 @@
 		#comments{
 			display: none;
 		}
-
+		.message  {
+			padding:10px 20px;
+			margin:5px;
+			border-bottom:1px solid rgba(255, 255, 255, 0.2);           
+		}
+		.avatar-message {
+			display:inline-block;
+			vertical-align: top;
+			width:40px;
+		}
+		.zone-comment {
+			display:inline-block;
+			vertical-align: top;
+			width:232px;
+		}
+		.give-idea {
+			display:inline-block;
+			vertical-align: top;
+			width:100px;
+		}
+		.image-avatar {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+		.comment{
+			color:#fff;
+			font-size:14px;
+			margin-left:10px;
+		}
+		.comment-date {
+			color:#fff;
+			font-size:10px;
+			margin-top:10px;
+		}
 	</style>
+
+	<!-- For Pubnub Backend -->
+	<core-pubnub
+		publish_key="pub-c-fccdc23d-8e64-4031-9f9e-64c275dc4b4b"
+		subscribe_key="sub-c-67616358-2006-11e5-947a-02ee2ddab7fe"
+		uuid="{{uuid}}">
+		<core-pubnub-subscribe id="sub" channel="idea-channel-comments-{{guid}}" on-callback="{{subscribeCommentCallback}}" on-error="{{errorCommentCallback}}">
+		    <core-pubnub-publish id="pub" channel="idea-channel-comments-{{guid}}" message="" on-error="{{errorCommentCallback}}"></core-pubnub-publish>
+			<core-pubnub-history id="history" channel="idea-channel-comments-{{guid}}" count="30" on-success="{{historyCommentRetrieved}}" on-error="{{errorCommentCallback}}"></core-pubnub-history>
+	    </core-pubnub-subscribe>
+	</core-pubnub>
 	
 	<section class="section-card" layout vertical>
 		<div class="card">
@@ -96,26 +141,18 @@
 				<div class="idea-subscribers" on-tap="{{togglecomments}}"><span>28 </span><i id="icon" class="fa fa-users"></i></div>
 				<div id="comments">
 					<paper-input></paper-input>
-					<ul>
-						<li>Trop sucks!</li>
-						<li>c'est nul</li>
-						<li>T fou, tro b1!</li>
-						<li>Trop sucks!</li>
-						<li>c'est nul</li>
-						<li>T fou, tro b1!</li>
-						<li>Trop sucks!</li>
-						<li>c'est nul</li>
-						<li>T fou, tro b1!</li>
-						<li>Trop sucks!</li>
-						<li>c'est nul</li>
-						<li>T fou, tro b1!</li>
-						<li>Trop sucks!</li>
-						<li>c'est nul</li>
-						<li>T fou, tro b1!</li>
-						<li>Trop sucks!</li>
-						<li>c'est nul</li>
-						<li>T fou, tro b1!</li>
-					</ul>
+					<!--<<<<<<<<<<<<<<<<<Comment Template<<<<<<<<<<<<<<<<<<<<<<-->
+                   <div class="message">
+                   		<div class="avatar-message">
+                   			<img class="image-avatar" src="images/Adeline.jpg" />
+                   			<div class="comment-date">09/12/2015</div>
+                   		</div>
+                   		<div class="zone-comment">
+                   			<div class="comment">Haec igitur prima lex amicitiae sanciatur, ut ab amicis honesta petamus, amicorum causa honesta faciamus, ne exspectemus quidem, dum rogemur; studium semper adsit</div>
+               			</div>
+               			<a class="give-idea" href="#"></a>
+                   </div>
+					<!--<<<<<<<<<<<<<<<<<End Comment Template<<<<<<<<<<<<<<<<<<<<<<--> 
 				</div>
 			</div>
 		</div>
