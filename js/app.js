@@ -1,3 +1,4 @@
+var currentDisplayed = "";
 (function() {
 	'use strict';
 	var uuid, pubnubId, avatar, color, cat;
