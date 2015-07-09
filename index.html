@@ -7,17 +7,33 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
 
-	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
+	<!--
 	<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
 	<link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
 	<link rel="import" href="bower_components/core-item/core-item.html">
+	-->
+	
+	<link rel="import" href="bower_components/iron-icons/iron-icons.html">
+	<link rel="import" href="bower_components/paper-drawer-panel/paper-drawer-panel.html">
+	<link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+	<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+	<link rel="import" href="bower_components/paper-material/paper-material.html">
+	<link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
+	<link rel="import" href="bower_components/paper-toolbar/paper-item.html">
+	
 	<link rel="import" href="bower_components/paper-input/paper-input.html">
+	<link rel="import" href="bower_components/paper-input/paper-textarea.html">
 	<link rel="import" href="bower_components/paper-button/paper-button.html">
 	<link rel="import" href="bower_components/paper-fab/paper-fab.html">
-	<link rel="import" href="bower_components/paper-dialog/paper-action-dialog.html">
+	<link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
 	<link rel="import" href="bower_components/pubnub-element/pubnub-element.html">
+
+
 	<link rel="import" href="new-idea.html">
+	
+	
 	
 	<link rel="import" href="idea.html">
 
@@ -28,8 +44,9 @@
 <body fullbleed unresolved>
 
 
-	<template is="auto-binding">
-		<!-- For Pubnub Backend -->
+	<template is="dom-bind">
+	
+	<!-- For Pubnub Backend
 		<core-pubnub
 			publish_key="pub-c-fccdc23d-8e64-4031-9f9e-64c275dc4b4b"
 			subscribe_key="sub-c-67616358-2006-11e5-947a-02ee2ddab7fe"
@@ -39,47 +56,48 @@
 				<core-pubnub-history id="history" channel="idea-channel-demo" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
 		    </core-pubnub-subscribe>
 		</core-pubnub>
+ -->
+    <paper-drawer-panel id="drawerPanel" responsive-width="1280px">
 
-		<core-scaffold>
-			<!-- Drawer panel -->
-			<core-header-panel navigation flex>
-				<core-toolbar id="navheader" class="tall">
-				</core-toolbar>
-				
-				<section layout vertical center id="infoList" style="margin:20px;">
-					<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
-					<div class="bottom uuid">{{uuid}}</div>	
-				</section>
-				<section layout vertical id="toolsList">
-					<core-item label="Produit avec :"></core-item>
-					<template repeat="{{tool in tools}}">
-						<core-item icon="{{tool.icon}}" label="{{tool.title}}"></core-item>
-					</template>
-				</section>
-				
-				
-			</core-header-panel>
+      <div class="nav" drawer>
+        <!-- Nav Content -->
+		<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
+		<div class="bottom uuid">{{uuid}}</div>	
+		<paper-item label="Produit avec :"></paper-item>
+		<template is="dom-repeat" items="{{tools}}">
+			<paper-item icon="{{item.icon}}" label="{{item.title}}"></paper-item>
+		</template>
+      </div>
 
-			<!-- App Title -->
-			<div tool layout horizontal flex>
-				<span flex>Brain Mapr</span>
-			</div>
+      <paper-header-panel class="main" main mode="waterfall">
 
-			<!-- Main content -->
-			<div flex>
-					<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
+		
+			
+        <!-- Main Toolbar -->
+        <paper-toolbar>
+          <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+		  <!-- App Title -->
+			<div>Brain Mapr</div>
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+			<new-idea id="newIdea" ideasubmit="{{publishMyIdea}}"></new-idea>
 					<section layout horizontal fit id="ideas">
 						<div class="idea-grid" flex horizontal wrap around-justified layout cross-fade>
-							<template repeat="{{idea in ideaList}}">
+							<template is="dom-repeat" items="{{idea in ideaList}}">
 									<idea-mini layout vertical id="{{idea.guid}}" guid="{{idea.guid}}" uuid="{{pubnubId}}" subject="{{idea.title}}" description="{{idea.description}}" author="{{idea.author}}" avatar="{{idea.avatar}}" color="{{idea.color}}" timestamp="{{idea.timestamp}}" score="44"></idea-mini>
 							</template>
 		 				</div>
 					</section>
-			</div>
-			
-		</core-scaffold>
-		<paper-fab icon="add" id="addIdeaFab" on-tap="{{addNewIdea}}"></paper-fab> 
-	</template>
+		</div>
+<paper-fab icon="add" id="addIdeaFab" on-click="addNewIdea"></paper-fab> 
+      </paper-header-panel>
+
+    </paper-drawer-panel>
+
+  </template>
+
 	
 	<script src="js/app.js"></script>
 </body>

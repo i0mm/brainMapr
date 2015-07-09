@@ -1,5 +1,5 @@
 <script src="bower_components/time-elements/time-elements.js"></script>
-<polymer-element name="idea-mini" attributes="guid uuid author subject description score avatar color timestamp">
+<dom-module id="idea-mini" attributes="guid uuid author subject description score avatar color timestamp">
   <template>
   	<style>
   		@import url('css/font-awesome.min.css');
@@ -192,7 +192,7 @@
 		var template = document.querySelector('template');
 	});
 	
-	Polymer('idea-mini', {
+	Polymer({is: "idea-mini",
 		guid: 0,
 		score: 0,
 		author: '',
@@ -216,4 +216,4 @@
 		},
 	});
   </script>
-</polymer-element>
+</dom-module>

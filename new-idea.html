@@ -1,26 +1,28 @@
-<polymer-element name="new-idea" attributes="ideasubmit">
+<dom-module id="new-idea">
 
   <template>
 	
-	<paper-action-dialog id="dialog" transition="core-transition-center" heading="Nouvelle id&eacute;e">
+	<paper-dialog id="dialog" transition="core-transition-center" heading="Nouvelle id&eacute;e">
  
-		<paper-input-decorator label="Titre" id="idea_title" floatingLabel error="Veuillez indiquer un titre" autoValidate >
-			<input is="core-input" required>
-		</paper-input-decorator>
+		<paper-input label="Titre" id="idea_title" error-message="Veuillez indiquer un titre" auto-validate required >
+		</paper-input>
 
-     <paper-input-decorator label="Description de l'id&eacute;e" id="idea_description" floatingLabel>
-      <paper-autogrow-textarea>
-        <textarea></textarea>
-      </paper-autogrow-textarea>
-    </paper-input-decorator>
+     <paper-textarea label="Description de l'id&eacute;e" id="idea_description">
+    </paper-textarea>
 
 		<paper-button dismissive>Non, laisse tomber...</paper-button>
 		<paper-button affirmative autofocus default style="color: #4285f4" on-tap="{{tap}}">Ouais super id&eacute;e!</paper-button>
-	</paper-action-dialog>
+	</paper-dialog>
   </template>
 
   <script>
-    Polymer({
+    Polymer({is: "new-idea",
+	properties: {
+		ideasubmit: {
+			type: Object,
+			value: function() { return {}; }
+		}
+	},
       back: function() {
         window.history.back();
       },
@@ -48,4 +50,4 @@
     });
   </script>
 
-</polymer-element>
+</dom-module>

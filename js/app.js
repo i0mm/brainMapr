@@ -58,7 +58,7 @@ var currentDisplayed = "";
         }
     }
 	
-	template.addNewIdea = function(e) {
+	addNewIdea = function(e) {
 		document.getElementById('newIdea').toggle();
 	};
 	

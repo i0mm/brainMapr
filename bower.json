@@ -19,6 +19,9 @@
     "paper-header-panel": "polymerelements/paper-header-panel#~1.0.2",
     "paper-icon-button": "polymerelements/paper-icon-button#~1.0.2",
     "paper-material": "polymerelements/paper-material#~1.0.0",
-    "paper-toolbar": "polymerelements/paper-toolbar#~1.0.2"
+    "paper-toolbar": "polymerelements/paper-toolbar#~1.0.2",
+    "pubnub-element": "~4.0.1",
+    "iron-icons": "polymerelements/iron-icons#~1.0.3",
+    "paper-item": "polymerelements/paper-item#~1.0.1"
   }
 }
